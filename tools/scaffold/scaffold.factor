@@ -38,7 +38,7 @@ IN: tools.scaffold
     ] if ;
 PRIVATE>
 
-: scaffold-overlay ( string -- )
+: scaffold-overlays ( string -- )
     "resource:overlays" swap scaffold-vocab-in ;
 
 : scaffold-my-work ( string -- )
