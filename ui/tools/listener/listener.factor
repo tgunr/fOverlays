@@ -1,5 +1,5 @@
 USING: assocs core-text.fonts io.styles kernel ui.commands ui.gestures
-ui.tools.listener.completion vocabs.refresh ;
+ui.tools.listener.completion ui.gadgets.editors vocabs.refresh ;
 
 IN: ui.tools.listener
 interactor "interactor" f {
