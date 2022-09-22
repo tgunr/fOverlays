@@ -10,25 +10,23 @@ tools.continuations ;
 
 IN: sequences.strings
 
-: leavemein ( -- ) break ;
+! : tab>space ( s -- s )
+!     "\t " split  ""  swap
+!     [
+!         [ SBUF" " = ] keep
+!         swap
+!         [ drop ]
+!         [ " " append append ]
+!         if
+!     ] each
+!     chop ;
 
-: tab>space ( s -- s )
-    "\t " split  ""  swap
-    [
-        [ SBUF" " = ] keep
-        swap
-        [ drop ]
-        [ " " append append ]
-        if
-    ] each
-    chop ;
-
+! : detab-lines ( s -- s )
+!     [ tab>space ] map ;
+        
 : squeeze-lines ( s -- s )
     [ SBUF" " = not ] filter ;
 
-: detab-lines ( s -- s )
-    [ tab>space ] map ;
-        
 :: only-regexp ( seq regexp -- seq )
     seq [ regexp matches? ] filter
     ;
@@ -36,6 +34,7 @@ IN: sequences.strings
 :: remove-regexp ( seq regexp -- seq )
     seq [ regexp matches? not ] filter
     ;
+
 : squeeze-spaces ( seq -- seq )   [ " " split  [ "" = not ] filter  " " join ] map ;
 : trim-leading ( seq -- seq )   [ [ blank? ] trim-head ] map ;
 : trim-trailing ( seq -- seq )   [ [ blank? ] trim-tail ] map ;
